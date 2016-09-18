@@ -32,7 +32,7 @@ import org.joda.time.Period;
  */
 public class Tick {
 
-    /** Time period (e.g. 1 day, 15 min, etc.) of the tick */
+    /** Time period (e.g. 1 day, 15 min, etc.) of the tick, default is 1 day */
     private Period timePeriod;
     /** End time of the tick */
     private DateTime endTime;
@@ -52,11 +52,18 @@ public class Tick {
     private Decimal volume = Decimal.ZERO;
     /** Trade count */
     private int trades = 0;
+    
+    // Values extracted from non-transactional data source
+    
+    /** 热点指数 */
+    private Decimal hotVal = Decimal.ZERO;
+    /** 热点排名 */
+    private Decimal hotRank = Decimal.ZERO;
 
     /**
      * Constructor.
      * @param timePeriod the time period
-     * @param endTime the end time of the tick period
+     * @param endTime the end time of the tiHck period
      */
     public Tick(Period timePeriod, DateTime endTime) {
         checkTimeArguments(timePeriod, endTime);
@@ -133,7 +140,37 @@ public class Tick {
         this.closePrice = closePrice;
         this.volume = volume;
     }
-
+    
+    /**
+     * Set the hot value  
+     * @param hotVal the hot value
+     */
+    public void setHotVal(Decimal hotVal){
+    	this.hotVal = hotVal;
+    }
+    
+    /**
+     * Set the hot rank 
+     * @param hotRank the hot rank 
+     */
+    public void setHotRank(Decimal hotRank){
+    	this.hotRank = hotRank;
+    }	
+    
+    /**
+     * @return the hot value
+     */
+    public Decimal getHotVal(){
+    	return hotVal;
+    }
+    
+    /**
+     * @return the hot ranking 
+     */
+    public Decimal getHotRank(){
+    	return hotRank;
+    }
+    
     /**
      * @return the close price of the period
      */
