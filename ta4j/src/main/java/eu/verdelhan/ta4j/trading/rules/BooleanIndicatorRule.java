@@ -48,4 +48,6 @@ public class BooleanIndicatorRule extends AbstractRule {
         traceIsSatisfied(index, satisfied);
         return satisfied;
     }
+    
+    
 }

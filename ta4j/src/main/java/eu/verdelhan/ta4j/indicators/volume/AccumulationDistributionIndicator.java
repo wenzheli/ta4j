@@ -1,5 +1,5 @@
 /**
- * The MIT License (MIT)
+] * The MIT License (MIT)
  *
  * Copyright (c) 2014-2016 Marc de Verdelhan & respective authors (see AUTHORS)
  *

@@ -32,7 +32,7 @@ import eu.verdelhan.ta4j.TradingRecord;
 public class JustOnceRule extends AbstractRule {
     
     private boolean satisfied = false;
-
+    
     @Override
     public boolean isSatisfied(int index, TradingRecord tradingRecord) {
         if (!satisfied) {
