@@ -20,6 +20,10 @@ public class TimeSeriesRepo {
 		this.size = collection.size();
 	}
 	
+	public List<TimeSeries> getTimeSeries(){
+		return timeSeriesCollection;
+	}
+	
 	public int size(){
 		return size;
 	}
@@ -27,5 +31,4 @@ public class TimeSeriesRepo {
 	public TimeSeries get(int index){
 		return timeSeriesCollection.get(index);
 	}
-	
 }

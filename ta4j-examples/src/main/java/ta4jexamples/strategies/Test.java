@@ -1,5 +1,7 @@
 package ta4jexamples.strategies;
 
+import java.io.IOException;
+
 /**
  * The MIT License (MIT)
  *
@@ -24,15 +26,20 @@ package ta4jexamples.strategies;
  */
 
 import eu.verdelhan.ta4j.Decimal;
+import eu.verdelhan.ta4j.Order.OrderType;
 import eu.verdelhan.ta4j.Rule;
 import eu.verdelhan.ta4j.Strategy;
 import eu.verdelhan.ta4j.TimeSeries;
+import eu.verdelhan.ta4j.TimeSeriesRepo;
 import eu.verdelhan.ta4j.TradingRecord;
 import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
+import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
 import eu.verdelhan.ta4j.indicators.oscillators.CCIIndicator;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
+import eu.verdelhan.ta4j.trading.rules.WaitForRule;
 import eu.verdelhan.ta4j.trading.rules.buying.SMABuying1;
+import eu.verdelhan.ta4j.trading.rules.buying.VOLBuying1;
 import eu.verdelhan.ta4j.trading.rules.selling.SMASelling1;
 import ta4jexamples.loaders.CsvTradesLoader;
 
@@ -49,28 +56,38 @@ public class Test {
      */
     public static Strategy buildStrategy(TimeSeries series) {
         
-        Rule entryRule = new SMABuying1(series, 5, 10, 30).buildRule();
+        Rule entryRule = new VOLBuying1(series, 5, 10, 30).buildRule();
+        
+        //Rule exitRule = new WaitForRule(OrderType.BUY, 2);
+        
         Rule exitRule = new SMASelling1(series, 5, 10, 30).buildRule();
         
         Strategy strategy = new Strategy(entryRule, exitRule);
         strategy.setUnstablePeriod(5);
-        return strategy;
-    }
+        return strategy;  
+    } 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     	
- 
+    	String path = "/Users/liwenzhe/Documents/workspace/DataWrapper/data/stocks";
+		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);
+		TimeSeriesRepo repo = builder.build();
         // Getting the time series
-        TimeSeries series = CsvTradesLoader.loadBitstampSeries();
-        
+        //TimeSeries series = CsvTradesLoader.loadBitstampSeries();
+        //TimeSeries series = repo.get(0);
         // Building the trading strategy
-        Strategy strategy = buildStrategy(series);
-
-        // Running the strategy
-        TradingRecord tradingRecord = series.run(strategy);
-        System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
-
-        // Analysis
-        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+        
+		for (TimeSeries series : repo.getTimeSeries()){
+			Strategy strategy = buildStrategy(series);
+	        
+	        // Running the strategy
+	        TradingRecord tradingRecord = series.run(strategy);
+	        System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
+	        // Analysis
+	        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+		}
+		
+		
+        
     }
 }

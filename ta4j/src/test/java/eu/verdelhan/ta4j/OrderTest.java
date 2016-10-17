@@ -39,7 +39,7 @@ public class OrderTest {
         opNotEquals1 = Order.sellAt(1);
         opNotEquals2 = Order.buyAt(2);
     }
-
+    
     @Test
     public void type() {
         assertEquals(OrderType.SELL, opNotEquals1.getType());

@@ -6,6 +6,7 @@ import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import eu.verdelhan.ta4j.indicators.simple.PreviousIndicator;
 import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
+import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 
 public class SMASelling1 {
 	
@@ -27,15 +28,15 @@ public class SMASelling1 {
 		SMAIndicator smaIndicator_10 = new SMAIndicator(closePrice, param2);
 		SMAIndicator smaIndicator_30 = new SMAIndicator(closePrice,param3);
 		
-		PreviousIndicator smaPrevIndicator_5 = new PreviousIndicator(smaIndicator_5);
-		PreviousIndicator smaPrevIndicator_10 = new PreviousIndicator(smaIndicator_10);
-		PreviousIndicator smaPrevIndicator_30 = new PreviousIndicator(smaIndicator_30);
+		PreviousIndicator smaPrevIndicator_5 = new PreviousIndicator(smaIndicator_5, 1);
+		PreviousIndicator smaPrevIndicator_10 = new PreviousIndicator(smaIndicator_10, 1);
+		PreviousIndicator smaPrevIndicator_30 = new PreviousIndicator(smaIndicator_30, 1);
 		
-		Rule rule = new OverIndicatorRule(smaIndicator_5, smaIndicator_10)
-				.and(new OverIndicatorRule(smaIndicator_10, smaIndicator_30))
-				.and(new OverIndicatorRule(smaIndicator_5, smaPrevIndicator_5))
-				.and(new OverIndicatorRule(smaIndicator_10, smaPrevIndicator_10))
-				.and(new OverIndicatorRule(smaIndicator_30, smaPrevIndicator_30)); 
+		Rule rule = new UnderIndicatorRule(smaIndicator_5, smaIndicator_10)
+				.and(new UnderIndicatorRule(smaIndicator_10, smaIndicator_30))
+				.and(new UnderIndicatorRule(smaIndicator_5, smaPrevIndicator_5))
+				.and(new UnderIndicatorRule(smaIndicator_10, smaPrevIndicator_10))
+				.and(new UnderIndicatorRule(smaIndicator_30, smaPrevIndicator_30)); 
 		
 		return rule;
 	}
