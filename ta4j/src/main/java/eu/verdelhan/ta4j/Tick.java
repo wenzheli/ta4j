@@ -59,7 +59,7 @@ public class Tick {
     private Decimal hotVal = Decimal.ZERO;
     /** 热点排名 */
     private Decimal hotRank = Decimal.ZERO;
-
+    
     /**
      * Constructor.
      * @param timePeriod the time period
