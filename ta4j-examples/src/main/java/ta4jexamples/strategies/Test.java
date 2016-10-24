@@ -75,8 +75,9 @@ public class Test {
      * Build list of strategies. 
      * @param series   the time series
      * @return
+     * @throws Exception 
      */
-	public static List<Strategy> buildStrategies(TimeSeries series){
+	public static List<Strategy> buildStrategies(TimeSeries series) throws Exception{
 		List<Strategy> strategies = new ArrayList<Strategy>();
 		strategies.add(SMAStrategy(series));
 		strategies.add(VOLStrategy(series));
@@ -201,8 +202,9 @@ public class Test {
     /**
      * @param series a time series
      * @return a CCI correction strategy
+     * @throws Exception 
      */
-    public static Strategy SMAStrategy(TimeSeries series) {
+    public static Strategy SMAStrategy(TimeSeries series) throws Exception {
         
         Rule entryRule = new SMABuying1(series, 5, 10, 30).buildRule();
         
@@ -216,7 +218,7 @@ public class Test {
     } 
     
     
-    public static Strategy VOLStrategy(TimeSeries series){
+    public static Strategy VOLStrategy(TimeSeries series) throws Exception{
     	Rule entryRule = new VOLBuying1(series, 5, 10, 20).buildRule();
     	Rule exitRule = new SMASelling1(series, 5, 10, 30).buildRule();
     	
@@ -226,7 +228,7 @@ public class Test {
     }
     
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
     	
     	String path = "/Users/liwenzhe/Documents/workspace/DataWrapper/data/stocks";
 		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);

@@ -47,7 +47,7 @@ public class CovarianceIndicator extends CachedIndicator<Decimal> {
      * Constructor.
      * @param indicator1 the first indicator
      * @param indicator2 the second indicator
-     * @param timeFrame the time frame
+     * @param timeFrame the time fram e
      */
     public CovarianceIndicator(Indicator<Decimal> indicator1, Indicator<Decimal> indicator2, int timeFrame) {
         super(indicator1);
