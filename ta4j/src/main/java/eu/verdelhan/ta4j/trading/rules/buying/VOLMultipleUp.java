@@ -9,7 +9,7 @@ import eu.verdelhan.ta4j.indicators.simple.VolumeIndicator;
 import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 
-public class VOLBuying1 extends TradingRule{
+public class VOLMultipleUp extends TradingRule{
 	
 	/** average period for the first line, i.e. MA5 */ 
 	private int param1;     
@@ -21,15 +21,15 @@ public class VOLBuying1 extends TradingRule{
 	private int period = 1;   
 	
 	
-	public VOLBuying1(){
+	public VOLMultipleUp(){
 		
 	}
 	
-	public VOLBuying1(int param1, int param2, int param3){
+	public VOLMultipleUp(int param1, int param2, int param3){
 		this.setParams(param1, param2, param3);
 	}
 	
-	public VOLBuying1(int param1, int param2, int param3, int period){
+	public VOLMultipleUp(int param1, int param2, int param3, int period){
 		this.setParams(param1, param2, param3);
 		this.setPeriod(period);
 	}
@@ -48,7 +48,7 @@ public class VOLBuying1 extends TradingRule{
 		this.series = series;
 	}
 	
-	public VOLBuying1(TimeSeries series, int param1, int param2, int param3){
+	public VOLMultipleUp(TimeSeries series, int param1, int param2, int param3){
 		this.series = series;
 		this.setParams(param1, param2, param3);
 	}

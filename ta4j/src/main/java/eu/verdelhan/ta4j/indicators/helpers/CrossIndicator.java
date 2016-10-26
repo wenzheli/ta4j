@@ -33,7 +33,7 @@ import eu.verdelhan.ta4j.indicators.CachedIndicator;
  */
 public class CrossIndicator extends CachedIndicator<Boolean> {
 
-    /** Upper indicator */
+    /** Upper indicator */	
     private final Indicator<Decimal> up;
     /** Lower indicator */
     private final Indicator<Decimal> low;

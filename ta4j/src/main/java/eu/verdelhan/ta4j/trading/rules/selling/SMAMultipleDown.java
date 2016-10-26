@@ -8,14 +8,14 @@ import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 
-public class SMASelling1 {
+public class SMAMultipleDown {
 	
 	private TimeSeries series; 
 	private final int param1;
 	private final int param2;
 	private final int param3;
 	
-	public SMASelling1(TimeSeries series, int param1, int param2, int param3){
+	public SMAMultipleDown(TimeSeries series, int param1, int param2, int param3){
 		this.series = series;
 		this.param1 = param1;
 		this.param2 = param2;

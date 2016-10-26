@@ -11,7 +11,7 @@ import eu.verdelhan.ta4j.trading.rules.AbstractRule;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 
-public class SMABuying1 extends TradingRule{
+public class SMAMultipleUp extends TradingRule{
 	
 	/** average period for the first line, i.e. MA5 */ 
 	private int param1;     
@@ -22,19 +22,19 @@ public class SMABuying1 extends TradingRule{
 	/** the length of period to consider for each line, the default value is 1 */ 
 	private int period = 1;   
 	
-	public SMABuying1(){
+	public SMAMultipleUp(){
 	}
 	
-	public SMABuying1(int param1, int param2, int param3){
+	public SMAMultipleUp(int param1, int param2, int param3){
 		this.setParams(param1, param2, param3);
 	}
 	
-	public SMABuying1(int param1, int param2, int param3, int period){
+	public SMAMultipleUp(int param1, int param2, int param3, int period){
 		this.setParams(param1, param2, param3);
 		this.setPeriod(period);
 	}
 	
-	public SMABuying1(TimeSeries series, int param1, int param2, int param3){
+	public SMAMultipleUp(TimeSeries series, int param1, int param2, int param3){
 		super(series);
 		this.setParams(param1, param2, param3);
 	}
