@@ -53,7 +53,7 @@ public class Quickstart {
         // Getting a time series (from any provider: CSV, web service, etc.)
         TimeSeries series = CsvTradesLoader.loadBitstampSeries();
 
-
+        
         // Getting the close price of the ticks
         Decimal firstClosePrice = series.getTick(0).getClosePrice();
         System.out.println("First close price: " + firstClosePrice.toDouble());
@@ -79,6 +79,13 @@ public class Quickstart {
         //  - or if the price goes below a defined price (e.g $800.00)
         Rule buyingRule = new CrossedUpIndicatorRule(shortSma, longSma)
                 .or(new CrossedDownIndicatorRule(closePrice, Decimal.valueOf("800")));
+        
+        
+        for (int i = 0; i < series.getTickCount(); i++){
+        	System.out.println(buyingRule.isSatisfied(i));
+        }
+        
+        
         
         // Selling rules
         // We want to sell:

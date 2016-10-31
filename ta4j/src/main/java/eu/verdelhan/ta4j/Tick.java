@@ -58,7 +58,7 @@ public class Tick {
     /** 热点指数 */
     private Decimal hotVal = Decimal.ZERO;
     /** 热点排名 */
-    private Decimal hotRank = Decimal.ZERO;
+    private Decimal hotRank = Decimal.valueOf(Double.MAX_VALUE);  // default by the maximum value
     
     /**
      * Constructor.

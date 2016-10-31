@@ -399,7 +399,7 @@ public class TimeSeries {
     public TradingRecord run(Strategy strategy, OrderType orderType) {
         return run(strategy, orderType, Decimal.NaN);
     }
-
+    
     /**
      * Runs the strategy over the series.
      * <p>

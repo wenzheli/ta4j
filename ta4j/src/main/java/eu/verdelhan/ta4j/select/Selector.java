@@ -3,6 +3,7 @@ package eu.verdelhan.ta4j.select;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import eu.verdelhan.ta4j.Rule;
 import eu.verdelhan.ta4j.TimeSeries;
@@ -14,6 +15,20 @@ import eu.verdelhan.ta4j.trading.rules.buying.VOLMultipleUp;
 
 public class Selector {
 	
+	
+	public static List<TimeSeries> select(Map<String, TimeSeries> repo, TradingRule tradingRule) throws Exception{
+		List<TimeSeries> res = new ArrayList<TimeSeries>();   // store the result code 
+		for (TimeSeries series : repo.values()){
+			
+			if (Selector.isSatisfied(series, tradingRule)){
+				res.add(series); 
+			}
+		}
+		
+		return res;
+	}
+	
+	
 	/**
 	 * Return the stock code which satisfied the rule
 	 * @return  the list of stock codes
@@ -21,7 +36,7 @@ public class Selector {
 	 */
 	public static List<TimeSeries> select(TimeSeriesRepo repo, TradingRule tradingRule) throws Exception{
 		List<TimeSeries> res = new ArrayList<TimeSeries>();   // store the result code 
-		for (TimeSeries series : repo.getTimeSeries()){
+		for (TimeSeries series : repo.getTimeSeries().values()){
 			
 			if (Selector.isSatisfied(series, tradingRule)){
 				res.add(series); 
@@ -40,7 +55,7 @@ public class Selector {
 	 */
 	public static List<TimeSeries> select(TimeSeriesRepo repo, List<TradingRule> tradingRules) throws Exception{
 		List<TimeSeries> res = new ArrayList<TimeSeries>();
-		for (TimeSeries series: repo.getTimeSeries()){
+		for (TimeSeries series: repo.getTimeSeries().values()){
 			for (TradingRule rule : tradingRules){
 				if (!Selector.isSatisfied(series, rule)){
 					break;
@@ -51,6 +66,23 @@ public class Selector {
 		
 		return res;
 	}
+	
+	public static List<TimeSeries> select(Map<String, TimeSeries> repo, List<TradingRule> tradingRules, int beforeIndex) throws Exception{
+		List<TimeSeries> res = new ArrayList<TimeSeries>();
+		for (TimeSeries series: repo.values()){
+			for (TradingRule rule : tradingRules){
+				if (!Selector.isSatisfied(series, rule, beforeIndex)){
+					break;
+				}
+				res.add(series);
+			}
+		}
+		
+		return res;
+	}
+	
+	
+
 	
 	
 	public static List<String> getCodes(List<TimeSeries> series){
@@ -64,12 +96,30 @@ public class Selector {
 	
 	
 	
-	private static boolean isSatisfied(TimeSeries series, TradingRule tradingRule) throws Exception{
+	public static boolean isSatisfied(TimeSeries series, TradingRule tradingRule) throws Exception{
 		tradingRule.setTimeSeries(series);
 		Rule rule = tradingRule.buildRule();
 		return rule.isSatisfied(series.getEnd());
 	}
 	
+	
+	
+	public static boolean isSatisfied(TimeSeries series, TradingRule tradingRule, int beforeIndex) throws Exception{
+		tradingRule.setTimeSeries(series);
+		Rule rule = tradingRule.buildRule();
+		return rule.isSatisfied(series.getEnd() - beforeIndex);
+	}
+	
+	public static List<String> select(Map<String, TimeSeries> repo, TradingRule tradingRule, int beforeIndex) throws Exception{
+		List<String> codes = new ArrayList<String>();
+		for (TimeSeries s: repo.values()){
+			if (Selector.isSatisfied(s, tradingRule, beforeIndex)){
+				codes.add(s.getName());
+			}
+		}
+		
+		return codes;
+	}
 	
 	
 	
@@ -78,8 +128,9 @@ public class Selector {
 		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);
 		TimeSeriesRepo repo = builder.build();
 		
+		
 		TradingRule tradingRule = new VOLMultipleUp(5,10,30,3);
-	
+		
 		
 		List<TimeSeries> candidates = Selector.select(repo, tradingRule);
 		List<String> codes = Selector.getCodes(candidates);

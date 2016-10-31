@@ -35,10 +35,10 @@ import eu.verdelhan.ta4j.Order.OrderType;
 public class Trade {
 
     /** The entry order */
-    private Order entry;
+    public Order entry;
 
     /** The exit order */
-    private Order exit;
+    public Order exit;
 
     /** The type of the entry order */
     private OrderType startingType;
@@ -60,7 +60,10 @@ public class Trade {
         }
         this.startingType = startingType;
     }
-
+    
+    public void setStartingType(OrderType orderType){
+    	this.startingType = orderType;
+    }
     /**
      * Constructor.
      * @param entry the entry {@link Order order}
@@ -73,6 +76,11 @@ public class Trade {
         this.startingType = entry.getType();
         this.entry = entry;
         this.exit = exit;
+    }
+    
+    public void clear(){
+    	this.exit = null;
+    	this.entry = null;
     }
 
     /**

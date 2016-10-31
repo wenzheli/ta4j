@@ -55,9 +55,9 @@ import eu.verdelhan.ta4j.trading.rules.CrossedUpIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 import eu.verdelhan.ta4j.trading.rules.WaitForRule;
-import eu.verdelhan.ta4j.trading.rules.buying.SMABuying1;
-import eu.verdelhan.ta4j.trading.rules.buying.VOLBuying1;
-import eu.verdelhan.ta4j.trading.rules.selling.SMASelling1;
+import eu.verdelhan.ta4j.trading.rules.buying.SMAMultipleUp;
+import eu.verdelhan.ta4j.trading.rules.buying.VOLMultipleUp;
+import eu.verdelhan.ta4j.trading.rules.selling.SMAMultipleDown;
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**
@@ -206,11 +206,11 @@ public class Test {
      */
     public static Strategy SMAStrategy(TimeSeries series) throws Exception {
         
-        Rule entryRule = new SMABuying1(series, 5, 10, 30).buildRule();
+        Rule entryRule = new SMAMultipleUp(series, 5, 10, 30).buildRule();
         
         //Rule exitRule = new WaitForRule(OrderType.BUY, 2);
         
-        Rule exitRule = new SMASelling1(series, 5, 10, 30).buildRule();
+        Rule exitRule = new SMAMultipleDown(series, 5, 10, 30).buildRule();
         
         Strategy strategy = new Strategy(entryRule, exitRule);
         strategy.setUnstablePeriod(5);
@@ -219,8 +219,8 @@ public class Test {
     
     
     public static Strategy VOLStrategy(TimeSeries series) throws Exception{
-    	Rule entryRule = new VOLBuying1(series, 5, 10, 20).buildRule();
-    	Rule exitRule = new SMASelling1(series, 5, 10, 30).buildRule();
+    	Rule entryRule = new VOLMultipleUp(series, 5, 10, 20).buildRule();
+    	Rule exitRule = new SMAMultipleDown(series, 5, 10, 30).buildRule();
     	
     	Strategy strategy = new Strategy(entryRule, exitRule);
     	strategy.setUnstablePeriod(5);
