@@ -58,7 +58,7 @@ public class Selector {
 		for (TimeSeries series: repo.getTimeSeries().values()){
 			for (TradingRule rule : tradingRules){
 				if (!Selector.isSatisfied(series, rule)){
-					break;
+					break; 
 				}
 				res.add(series);
 			}
@@ -82,9 +82,6 @@ public class Selector {
 	}
 	
 	
-
-	
-	
 	public static List<String> getCodes(List<TimeSeries> series){
 		List<String> codes = new ArrayList<String>();
 		for (TimeSeries s : series){
@@ -92,8 +89,6 @@ public class Selector {
 		}
 		return codes;
 	}
-	
-	
 	
 	
 	public static boolean isSatisfied(TimeSeries series, TradingRule tradingRule) throws Exception{
