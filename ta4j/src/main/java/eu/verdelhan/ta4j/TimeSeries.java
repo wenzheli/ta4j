@@ -25,6 +25,8 @@ package eu.verdelhan.ta4j;
 import eu.verdelhan.ta4j.Order.OrderType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.Period;
@@ -62,6 +64,8 @@ public class TimeSeries {
     private int removedTicksCount = 0;
     /** True if the current series is a sub-series, false otherwise */
     private boolean subSeries = false;
+    
+    Map<DateTime, Integer> dateToIndex;
 
     /**
      * Constructor.
@@ -93,6 +97,13 @@ public class TimeSeries {
         this.ticks = new ArrayList<Tick>();
         this.timePeriod = timePeriod;
     }
+    
+    public int getIndexFromDate(DateTime dateTime){
+    	if (dateToIndex.containsKey(dateTime))
+    		return dateToIndex.get(dateTime);
+    	else
+    		return -1;
+    }
 
     /**
      * Constructor of an unnamed series.
@@ -101,6 +112,10 @@ public class TimeSeries {
      */
     public TimeSeries(Period timePeriod) {
         this("unamed", timePeriod);
+    }
+    
+    public void setDateToIndex(Map<DateTime, Integer> dateToIndex){
+    	this.dateToIndex = dateToIndex;
     }
 
     /**
@@ -152,6 +167,13 @@ public class TimeSeries {
             throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(this, i));
         }
         return ticks.get(innerIndex);
+    }
+    
+    /**
+     * @return the mappings between the date time and index
+     */
+    public Map<DateTime, Integer> getDateToIndex(){
+    	return dateToIndex;
     }
 
     /**

@@ -2,6 +2,7 @@ package eu.verdelhan.ta4j.trading.rules.selling;
 
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRule;
 import eu.verdelhan.ta4j.indicators.simple.HotRankIndicator;
 import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
@@ -12,6 +13,10 @@ public class HotRankSell extends TradingRule{
 	
 	public HotRankSell(int param){
 		this.param = param;
+	}
+	
+	public void setHotRankSell(TimeSeries series){
+		this.series = series;
 	}
 	
 	@Override

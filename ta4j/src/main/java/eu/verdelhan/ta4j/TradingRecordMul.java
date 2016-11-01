@@ -12,6 +12,10 @@ public class TradingRecordMul {
 		currentTrade = new TradeMul();
 	}
 	
+	public List<TradeMul> getTrades(){
+		return trades;
+	}
+	
 	public void clearCurrTrade(){
 		currentTrade.clear();
 	}

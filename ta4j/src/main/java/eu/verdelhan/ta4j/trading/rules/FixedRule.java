@@ -41,7 +41,7 @@ public class FixedRule extends AbstractRule {
     public FixedRule(int... indexes) {
         this.indexes = Arrays.copyOf(indexes, indexes.length);
     }
-
+    
     @Override
     public boolean isSatisfied(int index, TradingRecord tradingRecord) {
         boolean satisfied = false;

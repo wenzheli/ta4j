@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -14,6 +16,7 @@ import org.joda.time.format.DateTimeFormatter;
 import eu.verdelhan.ta4j.Tick;
 import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TimeSeriesRepo;
+import eu.verdelhan.ta4j.utils.SecurityCodeConverter;
 
 public class TimeSeriesRepoBuilder {
 	private String dirPath;
@@ -29,6 +32,8 @@ public class TimeSeriesRepoBuilder {
 		
 		List<TimeSeries> series = new ArrayList<TimeSeries>();
 		for (File f : dir.listFiles()){
+			if (f.getName().equals(".DS_Store"))
+				continue;
 			System.out.println("processing " + f.getName());
 			br = new BufferedReader(new FileReader(f));
 			br.readLine();    // skip the header line
@@ -38,11 +43,31 @@ public class TimeSeriesRepoBuilder {
             while ((line = br.readLine()) != null) { // loop each stock info 
             	lines.add(line);
             }
-            List<Tick> ticks = buildTicks(lines);
-            series.add(new TimeSeries(code, ticks));
+            List<Tick> ticks = buildTicks(lines);   // build the ticks 
+            TimeSeries s = new TimeSeries(code, ticks);
+            s.setDateToIndex(buildDateToIndex(lines));  // build the date to index mapping
+            series.add(s);
 		}
 		
 		return new TimeSeriesRepo(series);
+	}
+	
+	
+	private Map<DateTime, Integer> buildDateToIndex(List<String> lines){
+		Map<DateTime, Integer> dateToIndex = new HashMap<DateTime, Integer>();
+		int n = lines.size();
+		
+		int idx = 0;
+		for (int i = n-1; i >= 0; i--){ // from reverse order
+			String[] strs = lines.get(i).split(",");	
+			// format date
+			DateTimeFormatter f = DateTimeFormat.forPattern("yyyy-MM-dd");
+			DateTime date = f.parseDateTime(strs[0]);
+			dateToIndex.put(date, idx);
+			idx++;
+		}
+		
+		return dateToIndex;
 	}
 	
 	private List<Tick> buildTicks(List<String> lines){
@@ -79,9 +104,10 @@ public class TimeSeriesRepoBuilder {
 	}
 	
 	public static void main(String[] args) throws IOException{
-		String path = "/Users/liwenzhe/Documents/workspace/DataWrapper/data/stocks";
+		String path = "/Users/wenzheli/Documents/workspace/quant-data/data/stocks";
 		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);
-		builder.build();
+		TimeSeriesRepo repo = builder.build();
+		int aa = 1;
 	}
 	
 	

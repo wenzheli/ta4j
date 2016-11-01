@@ -2,6 +2,7 @@ package eu.verdelhan.ta4j.trading.rules.buying;
 
 import eu.verdelhan.ta4j.Decimal;
 import eu.verdelhan.ta4j.Rule;
+import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.TradingRule;
 import eu.verdelhan.ta4j.indicators.simple.HotRankIndicator;
 import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
@@ -13,6 +14,10 @@ public class HotRankBuy extends TradingRule{
 	
 	public HotRankBuy(int param){
 		this.param = param;
+	}
+	
+	public void setTimeSeries(TimeSeries series){
+		this.series = series;
 	}
 	
 	@Override
