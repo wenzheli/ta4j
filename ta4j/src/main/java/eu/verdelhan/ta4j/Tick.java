@@ -88,6 +88,10 @@ public class Tick {
                 Decimal.valueOf(closePrice),
                 Decimal.valueOf(volume));
     }
+    
+    public void setClosePrice(Decimal val){
+    	this.closePrice = val;
+    }
 
     /**
      * Constructor.

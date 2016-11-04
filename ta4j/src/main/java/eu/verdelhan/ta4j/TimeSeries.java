@@ -315,6 +315,20 @@ public class TimeSeries {
         }
         return new TimeSeries(name, ticks, beginIndex, endIndex, true);
     }
+    
+    public TimeSeries subseriesDeep(int beginIndex, int endIndex){
+    	List<Tick> newTicks = new ArrayList<Tick>();
+    	for (int i = beginIndex; i <= endIndex; i++){
+    		newTicks.add(ticks.get(i));
+    	}
+    	
+    	for (int i = 1; i <= endIndex - beginIndex; i++){
+    		newTicks.get(i).setClosePrice(newTicks.get(i).getClosePrice().dividedBy(newTicks.get(0).getClosePrice()));
+    	}
+    	
+    	newTicks.get(0).setClosePrice(Decimal.ONE);
+    	return new TimeSeries(name, newTicks, 0, endIndex - beginIndex, false);
+    }
 
     /**
      * Returns a new time series which is a view of a subset of the current series.

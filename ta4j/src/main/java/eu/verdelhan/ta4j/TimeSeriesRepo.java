@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.verdelhan.ta4j.Order.OrderType;
+import eu.verdelhan.ta4j.analysis.CashFlow;
 import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
 import eu.verdelhan.ta4j.select.Selector;
 import eu.verdelhan.ta4j.trading.rules.buying.HotRankBuy;
@@ -89,22 +90,23 @@ public class TimeSeriesRepo {
 		}
 		
 	}
-	
-	
-	public TradingRecordMul runHotRankSingle(TradingRule buyingRule, TradingRule sellingRule, 
-												DateTime startTime, DateTime endTime) throws Exception{
+	public TradingRecordMul runHotRankSingle(List<TradingRule> buyingRules, TradingRule sellingRule, 
+			DateTime startTime, DateTime endTime) throws Exception{
 		TradingRecordMul tradingRecord = new TradingRecordMul();  // to store the list of trades
 		// get all the dates that the market opened 
 		List<DateTime> dates = Selector.getFullDates(timeSeriesCollection, startTime, endTime); 
-		
 		for (DateTime date : dates){
 			TradeMul currTrade = tradingRecord.getCurrentTrade();
 			if (currTrade.isNew()){  // the next step is to buy entry == null & exit == null
-				List<String> codes = Selector.select(timeSeriesCollection, buyingRule, date);
+				List<String> codes = Selector.select(timeSeriesCollection, buyingRules, date);
 				if (codes.size() > 0){ // buy the first one by default
-					int idx = timeSeriesCollection.get(codes.get(0)).getIndexFromDate(date);
+					//int randomIdx = 0 + (int)(Math.random() * (codes.size()-1));
+					int randomIdx = 0;
+					// randomly select one of them
+					
+					int idx = timeSeriesCollection.get(codes.get(randomIdx)).getIndexFromDate(date);
 					currTrade.setEntryOrder(new Order(idx, OrderType.BUY));
-					currTrade.setCode(codes.get(0));
+					currTrade.setCode(codes.get(randomIdx));
 				}
 			} else{ // the next step is to sell
 				// check if the currently bought stock satisfy the selling condition
@@ -131,6 +133,59 @@ public class TimeSeriesRepo {
 		}
 		return tradingRecord;
 	}
+	
+	
+	
+	
+	public TradingRecordMul runHotRankSingle(TradingRule buyingRule, TradingRule sellingRule, 
+												DateTime startTime, DateTime endTime) throws Exception{
+		TradingRecordMul tradingRecord = new TradingRecordMul();  // to store the list of trades
+		// get all the dates that the market opened 
+		List<DateTime> dates = Selector.getFullDates(timeSeriesCollection, startTime, endTime); 
+		
+		for (DateTime date : dates){
+			TradeMul currTrade = tradingRecord.getCurrentTrade();
+			if (currTrade.isNew()){  // the next step is to buy entry == null & exit == null
+				List<String> codes = Selector.select(timeSeriesCollection, buyingRule, date);
+				if (codes.size() > 0){ // buy the first one by default
+					int randomIdx = 0 + (int)(Math.random() * (codes.size()-1));
+					// randomly select one of them
+					
+					int idx = timeSeriesCollection.get(codes.get(randomIdx)).getIndexFromDate(date);
+					currTrade.setEntryOrder(new Order(idx, OrderType.BUY));
+					currTrade.setCode(codes.get(randomIdx));
+				}
+			} else{ // the next step is to sell
+				// check if the currently bought stock satisfy the selling condition
+				TradeMul trade = tradingRecord.getCurrentTrade();
+				String code = trade.getCode();
+				TimeSeries series = timeSeriesCollection.get(code);
+
+				if (series.getIndexFromDate(date) == -1)  // if not exists
+					continue;
+				int idx = series.getIndexFromDate(date);
+				
+				if (Selector.satisfied(series, sellingRule, idx)){
+					// then sold it and clear the current trade
+					Order entryOrder = trade.getEntry();  // retrieve the current entry order
+					TradeMul newTrade = new TradeMul(OrderType.BUY, code); // create a new trade object
+					// set the entry and exit order
+					newTrade.setEntryOrder(entryOrder);   
+					newTrade.setExitOrder(new Order(idx, OrderType.SELL));
+					tradingRecord.addTrade(newTrade); // add the trade list
+					tradingRecord.clearCurrTrade();   // clear the current trade
+				}
+			}
+				
+		}
+		return tradingRecord;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public List<TradingRecordMul> runHotRankMultiple(TradingRule buyingRule, TradingRule sellingRule, int period){
 		return null;
@@ -265,7 +320,7 @@ public class TimeSeriesRepo {
 		
 		TradingRecordMul tradingRecordMul = repo.runHotRankSingle(buying, selling, f.parseDateTime(start), f.parseDateTime(end));
 		
-		CashFlow cashFlow = new CashFlow();
+		CashFlow cashFlow = new CashFlow(repo, tradingRecordMul, f.parseDateTime(start), f.parseDateTime(end));
 		
 		
 		//TradingRule buying = new VOLMultipleUp(5,10,30,1);

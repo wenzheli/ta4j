@@ -42,6 +42,9 @@ import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Minute;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import ta4jexamples.loaders.CsvTradesLoader;
@@ -94,6 +97,8 @@ public class BuyAndSellSignalsToChart {
             plot.addDomainMarker(sellMarker);
         }
     }
+    
+    
 
     /**
      * Displays a chart in a frame.

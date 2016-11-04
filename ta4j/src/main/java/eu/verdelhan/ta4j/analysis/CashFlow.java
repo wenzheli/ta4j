@@ -61,8 +61,8 @@ public class CashFlow implements Indicator<Decimal> {
     /** The end time */
     private DateTime endTime;
 
-    /** The cash flow values */
-    private List<Decimal> values = new ArrayList<Decimal>(Arrays.asList(Decimal.ONE));
+    /** The cash flow values, size() = 1 */
+    private List<Decimal> values = new ArrayList<Decimal>(Arrays.asList(Decimal.ONE)); 
 
     /**
      * Constructor.
@@ -78,72 +78,64 @@ public class CashFlow implements Indicator<Decimal> {
     
     public CashFlow(TimeSeriesRepo repo, TradingRecordMul tradingRecord, 
     									DateTime startTime, DateTime endTime){
-    	this.repo = repo;
-    	this.startTime = startTime;
-    	this.endTime = endTime;
-    	
-    	String code = "hs300";
+    	// get the hs300 index as the reference
+    	String code = "hs300"; 
 		TimeSeries hs300 = repo.get(code);
 		
+		// start and end index for the hs300 
 		int startIdx = hs300.getIndexFromDate(startTime);
 		int endIdx = hs300.getIndexFromDate(endTime);
 		
+		//this.timeSeries = hs300.subseries(startIdx, endIdx);
+		
+		// we can compute the total length, which is equivalent to the size of array 
 		int len = endIdx - startIdx + 1;
+		
 		
 		for(TradeMul trade : tradingRecord.getTrades()){
 			code = trade.getCode();
-	    	TimeSeries s = repo.getTimeSeries().get(code);
-	    	DateTime buyDate = s.getTick(trade.getEntry().getIndex()).getEndTime();
-	    	int buyIdx = hs300.getIndexFromDate(buyDate) - startIdx;
-	    	
-	    	if (buyIdx > values.size()) {
+			int buyIdx = trade.getEntry().getIndex();
+			int sellIdx = trade.getExit().getIndex();
+			TimeSeries currSeries = repo.get(code);
+			DateTime buyDate = currSeries.getTick(buyIdx).getEndTime();
+			DateTime sellDate = currSeries.getTick(sellIdx).getEndTime();
+			
+			int buy = hs300.getIndexFromDate(buyDate) - startIdx;
+			int sell = hs300.getIndexFromDate(sellDate) - startIdx;
+			
+		
+	    	if (buy +1 > values.size()) {
 	            Decimal lastValue = values.get(values.size() - 1);
-	            values.addAll(Collections.nCopies(buyIdx - values.size(), lastValue));
+	            values.addAll(Collections.nCopies(buy+1 - values.size(), lastValue));
 	        }
 	    	
-	    	DateTime sellDate = s.getTick(trade.getExit().getIndex()).getEndTime();
-	    	int sellIdx = hs300.getIndexFromDate(sellDate) - startIdx;
 	    	
-	    	for (int i = Math.max(buyIdx, 1); i <= sellIdx; i++) {
+	    	for (int i = Math.max(buy+1, 1); i <= sell; i++) {
 	            Decimal ratio;
 	            if (trade.getEntry().isBuy()) {
-	            	int tmpIdx = s.getIndexFromDate(hs300.getTick(i + startIdx).getEndTime());
-	                ratio = s.getTick(tmpIdx).getClosePrice().dividedBy(s.getTick(trade.getEntry().getIndex()).getClosePrice());
+	            	DateTime tmp = hs300.getTick(i + startIdx).getEndTime();
+	            	int tmpIdx = currSeries.getIndexFromDate(tmp);
+	                ratio = currSeries.getTick(tmpIdx).getClosePrice().dividedBy(currSeries.getTick(trade.getEntry().getIndex()).getClosePrice());
 	            } else {
-	                ratio = s.getTick(trade.getEntry().getIndex()).getClosePrice().dividedBy(s.getTick(i).getClosePrice());
+	            	int tmpIdx = currSeries.getIndexFromDate(hs300.getTick(i + startIdx).getEndTime());
+	                ratio = currSeries.getTick(trade.getEntry().getIndex()).getClosePrice().dividedBy(currSeries.getTick(tmpIdx).getClosePrice());
 	            }
-	            values.add(values.get(buyIdx).multipliedBy(ratio));
+	            values.add(values.get(buy).multipliedBy(ratio));
 	        }
 	    	
 		}	
+		
+		fillToTheEndMul(len);
     }
     
-    private void calculateMulBeta(TradeMul trade, TimeSeries hs300){
-    	String code = trade.getCode();
-    	TimeSeries s = repo.getTimeSeries().get(code);
-    	DateTime buyDate = s.getTick(trade.getEntry().getIndex()).getEndTime();
-    	int buyIdx = hs300.getIndexFromDate(buyDate);
-    	
-    	if (buyIdx > values.size()) {
-            Decimal lastValue = values.get(values.size() - 1);
-            values.addAll(Collections.nCopies(buyIdx - values.size(), lastValue));
-        }
-    	
-    	DateTime sellDate = s.getTick(trade.getExit().getIndex()).getEndTime();
-    	int sellIdx = hs300.getIndexFromDate(sellDate);
-    	
-    	for (int i = Math.max(buyIdx, 1); i <= sellIdx; i++) {
-            Decimal ratio;
-            if (trade.getEntry().isBuy()) {
-            	
-                ratio = timeSeries.getTick(i).getClosePrice().dividedBy(timeSeries.getTick(entryIndex).getClosePrice());
-            } else {
-                ratio = timeSeries.getTick(entryIndex).getClosePrice().dividedBy(timeSeries.getTick(i).getClosePrice());
-            }
-            values.add(values.get(entryIndex).multipliedBy(ratio));
-        }
-    	
+    public void fillToTheEndMul(int len){
+    	if (len > values.size()){
+    		Decimal lastValue = values.get(values.size()-1);
+    		values.addAll(Collections.nCopies(len - values.size(), lastValue));
+    	}
     }
+    
+
     
     
     public CashFlow(TimeSeriesRepo repo, TradingRecordMul tradingRecord, int period){
@@ -192,6 +184,10 @@ public class CashFlow implements Indicator<Decimal> {
      */
     public int getSize() {
         return timeSeries.getTickCount();
+    }
+    
+    public List<Decimal> getValues(){
+    	return values;
     }
 
     /**
@@ -279,5 +275,11 @@ public class CashFlow implements Indicator<Decimal> {
             Decimal lastValue = values.get(values.size() - 1);
             values.addAll(Collections.nCopies(period - values.size(), lastValue));
         }
+    }
+    
+    
+    public static void main(String[] args){
+    	List<Decimal> a = new ArrayList<Decimal>(Arrays.asList(Decimal.ONE));
+    	int aaa = 1;
     }
 }

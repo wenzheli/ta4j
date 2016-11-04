@@ -57,6 +57,58 @@ public class Selector {
 		return codes;  // list of stock codes
 	}
 	
+	public static List<String> select(Map<String, TimeSeries> timeSeriesCollection, List<TradingRule> rules, DateTime date) throws Exception{
+		List<String> codes = new ArrayList<String>();
+		for (String code : timeSeriesCollection.keySet()){
+			TimeSeries series = timeSeriesCollection.get(code);
+			// convert to the index, if not exists, then skip it. 
+			if (series.getDateToIndex().get(date) == null)
+				continue;
+			// otherwise check if the index of current time series satisfy the trading rule. 
+			int index = series.getDateToIndex().get(date);
+			if (Selector.satisfied(series, rules.get(0), index)){ // first satisfy the hot rank rule
+				for (int i = 1; i < rules.size(); i++){
+					if (Selector.satisfied(series, rules.get(i), index)){
+						codes.add(code);
+						break;
+					}
+				}
+			}
+		}
+		
+		return codes;  // list of stock codes
+	}
+	
+	
+	public static List<String> selectAllSatisfy(Map<String, TimeSeries> timeSeriesCollection, List<TradingRule> rules, DateTime date) throws Exception{
+		List<String> codes = new ArrayList<String>();
+		for (String code : timeSeriesCollection.keySet()){
+			TimeSeries series = timeSeriesCollection.get(code);
+			// convert to the index, if not exists, then skip it. 
+			if (series.getDateToIndex().get(date) == null)
+				continue;
+			// otherwise check if the index of current time series satisfy the trading rule. 
+			int index = series.getDateToIndex().get(date);
+			if (Selector.satisfied(series, rules.get(0), index)){ // first satisfy the hot rank rule
+				boolean flag = true;
+				for (int i = 1; i < rules.size(); i++){
+					
+					if (!Selector.satisfied(series, rules.get(i), index)){
+						flag = false;
+						
+						break;
+					}
+				}
+				
+				if (flag == true){
+					codes.add(code);
+				}
+			}
+		}
+		
+		return codes;  // list of stock codes
+	}
+	
 	
 	/**
 	 * Return the stock code which satisfied the rule
