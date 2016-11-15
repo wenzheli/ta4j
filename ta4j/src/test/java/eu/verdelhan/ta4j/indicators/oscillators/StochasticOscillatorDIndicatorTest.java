@@ -22,15 +22,18 @@
  */
 package eu.verdelhan.ta4j.indicators.oscillators;
 
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.mocks.MockTick;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.oscillators.StochasticOscillatorDIndicator;
+import com.quant.indicators.oscillators.StochasticOscillatorKIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
 
 public class StochasticOscillatorDIndicatorTest {
     private TimeSeries data;

@@ -22,9 +22,12 @@
  */
 package eu.verdelhan.ta4j.indicators.simple;
 
-import eu.verdelhan.ta4j.Decimal;
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.indicators.simple.AbsoluteIndicator;
+import com.quant.indicators.simple.ConstantIndicator;
 
 public class AbsoluteIndicatorTest {
 

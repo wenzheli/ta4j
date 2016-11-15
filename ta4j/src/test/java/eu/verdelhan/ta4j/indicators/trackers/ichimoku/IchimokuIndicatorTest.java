@@ -30,8 +30,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.trackers.ichimoku.IchimokuChikouSpanIndicator;
+import com.quant.indicators.trackers.ichimoku.IchimokuKijunSenIndicator;
+import com.quant.indicators.trackers.ichimoku.IchimokuSenkouSpanAIndicator;
+import com.quant.indicators.trackers.ichimoku.IchimokuSenkouSpanBIndicator;
+import com.quant.indicators.trackers.ichimoku.IchimokuTenkanSenIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 

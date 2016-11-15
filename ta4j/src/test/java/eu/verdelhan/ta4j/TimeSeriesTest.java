@@ -22,10 +22,9 @@
  */
 package eu.verdelhan.ta4j;
 
-import eu.verdelhan.ta4j.Order.OrderType;
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
-import eu.verdelhan.ta4j.trading.rules.FixedRule;
+
 import java.util.LinkedList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -35,6 +34,15 @@ import org.joda.time.format.DateTimeFormatter;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.Order;
+import com.quant.Strategy;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.Trade;
+import com.quant.Order.OrderType;
+import com.quant.trading.rules.FixedRule;
 
 public class TimeSeriesTest {
 

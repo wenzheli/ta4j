@@ -22,13 +22,14 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.trading.rules.BooleanIndicatorRule;
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.indicators.simple.FixedIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Indicator;
+import com.quant.indicators.simple.FixedIndicator;
+import com.quant.trading.rules.BooleanIndicatorRule;
 
 public class BooleanIndicatorRuleTest {
 

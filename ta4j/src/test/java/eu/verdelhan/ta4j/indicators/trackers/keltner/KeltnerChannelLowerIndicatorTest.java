@@ -30,10 +30,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
+import com.quant.Decimal;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.keltner.KeltnerChannelLowerIndicator;
+import com.quant.indicators.trackers.keltner.KeltnerChannelMiddleIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 

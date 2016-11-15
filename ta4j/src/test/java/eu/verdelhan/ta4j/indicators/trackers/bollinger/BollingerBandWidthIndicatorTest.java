@@ -24,13 +24,18 @@ package eu.verdelhan.ta4j.indicators.trackers.bollinger;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.statistics.StandardDeviationIndicator;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.statistics.StandardDeviationIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandWidthIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsLowerIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsMiddleIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsUpperIndicator;
 
 public class BollingerBandWidthIndicatorTest {
 

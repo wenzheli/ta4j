@@ -17,14 +17,14 @@ import org.jfree.ui.RefineryUtilities;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TimeSeriesRepo;
-import eu.verdelhan.ta4j.TradingRecordMul;
-import eu.verdelhan.ta4j.TradingRule;
-import eu.verdelhan.ta4j.analysis.CashFlow;
-import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
-import eu.verdelhan.ta4j.trading.rules.buying.HotRankBuy;
-import eu.verdelhan.ta4j.trading.rules.selling.HotRankSell;
+import com.quant.TimeSeries;
+import com.quant.TimeSeriesRepo;
+import com.quant.TradingRecordMul;
+import com.quant.TradingRule;
+import com.quant.analysis.CashFlow;
+import com.quant.factory.TimeSeriesRepoBuilder;
+import com.quant.trading.rules.buying.HotRankBuy;
+import com.quant.trading.rules.selling.HotRankSell;
 
 public class HotRankSingleToChart extends ApplicationFrame{
 	public HotRankSingleToChart(final String title, CashFlow cashFlow, TimeSeries series) {

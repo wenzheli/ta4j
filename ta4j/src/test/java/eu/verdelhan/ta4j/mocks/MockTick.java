@@ -24,8 +24,8 @@ package eu.verdelhan.ta4j.mocks;
 
 import org.joda.time.DateTime;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Tick;
+import com.quant.Decimal;
+import com.quant.Tick;
 
 /**
  * A mock tick with sample data.

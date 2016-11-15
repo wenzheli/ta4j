@@ -22,12 +22,14 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.Order;
-import eu.verdelhan.ta4j.TradingRecord;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Order;
+import com.quant.TradingRecord;
+import com.quant.trading.rules.WaitForRule;
 
 public class WaitForRuleTest {
 

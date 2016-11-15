@@ -26,6 +26,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.quant.Order;
+import com.quant.Trade;
+import com.quant.TradingRecord;
+
 public class TradingRecordTest {
 
     private TradingRecord emptyRecord, openedRecord, closedRecord;

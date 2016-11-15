@@ -22,10 +22,11 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.trading.rules.FixedRule;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+
+import com.quant.trading.rules.FixedRule;
 
 public class FixedRuleTest {
 

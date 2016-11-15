@@ -9,8 +9,9 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.verdelhan.ta4j.TimeSeriesRepo;
-import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
+import com.quant.TimeSeriesRepo;
+import com.quant.factory.TimeSeriesRepoBuilder;
+import com.quant.select.Selector;
 
 public class SelectorTest {
 	
@@ -27,7 +28,7 @@ public class SelectorTest {
 	@Test
 	public void selectFullDatesTest(){
 		int period = 30;
-		List<DateTime> dates = Selector.getFullDates(repo, period);
+		List<DateTime> dates = Selector.getFullDates(repo.getTimeSeries(), period);
 		for (DateTime date : dates){
 			System.out.println(date);
 		}

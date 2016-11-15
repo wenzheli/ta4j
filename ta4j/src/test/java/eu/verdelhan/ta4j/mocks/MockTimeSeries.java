@@ -22,11 +22,12 @@
  */
 package eu.verdelhan.ta4j.mocks;
 
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
+
+import com.quant.Tick;
+import com.quant.TimeSeries;
 
 /**
  * A time series with sample data.

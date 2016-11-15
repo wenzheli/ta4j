@@ -22,13 +22,15 @@
  */
 package eu.verdelhan.ta4j.indicators.trackers.bollinger;
 
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsMiddleIndicator;
 
 public class BollingerBandsMiddleIndicatorTest {
     private TimeSeries data;

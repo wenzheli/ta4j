@@ -22,23 +22,25 @@
  */
 package ta4jexamples.indicators;
 
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.helpers.AverageTrueRangeIndicator;
-import eu.verdelhan.ta4j.indicators.statistics.StandardDeviationIndicator;
-import eu.verdelhan.ta4j.indicators.oscillators.PPOIndicator;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.PriceVariationIndicator;
-import eu.verdelhan.ta4j.indicators.simple.TypicalPriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.EMAIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.ROCIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.RSIIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.WilliamsRIndicator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.helpers.AverageTrueRangeIndicator;
+import com.quant.indicators.oscillators.PPOIndicator;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.simple.PriceVariationIndicator;
+import com.quant.indicators.simple.TypicalPriceIndicator;
+import com.quant.indicators.statistics.StandardDeviationIndicator;
+import com.quant.indicators.trackers.EMAIndicator;
+import com.quant.indicators.trackers.ROCIndicator;
+import com.quant.indicators.trackers.RSIIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.indicators.trackers.WilliamsRIndicator;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

@@ -22,19 +22,20 @@
  */
 package ta4jexamples.analysis;
 
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.AverageProfitCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.AverageProfitableTradesCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.BuyAndHoldCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.LinearTransactionCostCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.MaximumDrawdownCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.NumberOfTicksCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.NumberOfTradesCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.RewardRiskRatioCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.VersusBuyAndHoldCriterion;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.AverageProfitCriterion;
+import com.quant.analysis.criteria.AverageProfitableTradesCriterion;
+import com.quant.analysis.criteria.BuyAndHoldCriterion;
+import com.quant.analysis.criteria.LinearTransactionCostCriterion;
+import com.quant.analysis.criteria.MaximumDrawdownCriterion;
+import com.quant.analysis.criteria.NumberOfTicksCriterion;
+import com.quant.analysis.criteria.NumberOfTradesCriterion;
+import com.quant.analysis.criteria.RewardRiskRatioCriterion;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.analysis.criteria.VersusBuyAndHoldCriterion;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 import ta4jexamples.strategies.MovingMomentumStrategy;
 

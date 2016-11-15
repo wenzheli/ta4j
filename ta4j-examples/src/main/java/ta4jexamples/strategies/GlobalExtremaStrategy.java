@@ -22,20 +22,21 @@
  */
 package ta4jexamples.strategies;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Rule;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.indicators.helpers.HighestValueIndicator;
-import eu.verdelhan.ta4j.indicators.helpers.LowestValueIndicator;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MaxPriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MultiplierIndicator;
-import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
+import com.quant.Decimal;
+import com.quant.Rule;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.indicators.helpers.HighestValueIndicator;
+import com.quant.indicators.helpers.LowestValueIndicator;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.simple.MaxPriceIndicator;
+import com.quant.indicators.simple.MinPriceIndicator;
+import com.quant.indicators.simple.MultiplierIndicator;
+import com.quant.trading.rules.OverIndicatorRule;
+import com.quant.trading.rules.UnderIndicatorRule;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

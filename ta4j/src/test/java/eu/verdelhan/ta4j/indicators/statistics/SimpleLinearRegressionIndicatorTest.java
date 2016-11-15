@@ -22,15 +22,18 @@
  */
 package eu.verdelhan.ta4j.indicators.statistics;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Indicator;
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.statistics.SimpleLinearRegressionIndicator;
 
 public class SimpleLinearRegressionIndicatorTest {
 

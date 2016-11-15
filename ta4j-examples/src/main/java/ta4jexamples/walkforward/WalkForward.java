@@ -22,16 +22,18 @@
  */
 package ta4jexamples.walkforward;
 
-import eu.verdelhan.ta4j.AnalysisCriterion;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.joda.time.Period;
+
+import com.quant.AnalysisCriterion;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 import ta4jexamples.strategies.CCICorrectionStrategy;
 import ta4jexamples.strategies.GlobalExtremaStrategy;

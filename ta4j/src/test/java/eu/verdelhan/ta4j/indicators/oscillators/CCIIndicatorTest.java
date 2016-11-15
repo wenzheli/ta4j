@@ -23,12 +23,15 @@
 package eu.verdelhan.ta4j.indicators.oscillators;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.Tick;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Tick;
+import com.quant.indicators.oscillators.CCIIndicator;
 
 public class CCIIndicatorTest {
 

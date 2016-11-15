@@ -27,7 +27,9 @@ import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.verdelhan.ta4j.TimeSeries;
+import com.quant.TimeSeries;
+import com.quant.indicators.oscillators.DPOIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 
 public class DPOIndicatorTest {

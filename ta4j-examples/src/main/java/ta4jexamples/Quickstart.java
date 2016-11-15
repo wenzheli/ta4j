@@ -22,23 +22,24 @@
  */
 package ta4jexamples;
 
-import eu.verdelhan.ta4j.AnalysisCriterion;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Rule;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.CashFlow;
-import eu.verdelhan.ta4j.analysis.criteria.AverageProfitableTradesCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.RewardRiskRatioCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.analysis.criteria.VersusBuyAndHoldCriterion;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
-import eu.verdelhan.ta4j.trading.rules.CrossedDownIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.CrossedUpIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.StopGainRule;
-import eu.verdelhan.ta4j.trading.rules.StopLossRule;
+import com.quant.AnalysisCriterion;
+import com.quant.Decimal;
+import com.quant.Rule;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.CashFlow;
+import com.quant.analysis.criteria.AverageProfitableTradesCriterion;
+import com.quant.analysis.criteria.RewardRiskRatioCriterion;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.analysis.criteria.VersusBuyAndHoldCriterion;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.trading.rules.CrossedDownIndicatorRule;
+import com.quant.trading.rules.CrossedUpIndicatorRule;
+import com.quant.trading.rules.StopGainRule;
+import com.quant.trading.rules.StopLossRule;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

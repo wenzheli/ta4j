@@ -22,15 +22,16 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.trading.rules.StopGainRule;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.TradingRecord;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.trading.rules.StopGainRule;
 
 public class StopGainRuleTest {
 

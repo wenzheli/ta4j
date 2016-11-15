@@ -26,6 +26,9 @@ import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.quant.indicators.simple.FixedBooleanIndicator;
+import com.quant.indicators.simple.FixedDecimalIndicator;
+
 public class FixedIndicatorTest {
     
     private FixedDecimalIndicator fixedDecimalIndicator;

@@ -22,17 +22,19 @@
  */
 package ta4jexamples.bots;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Order;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
-import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
 import org.joda.time.DateTime;
+
+import com.quant.Decimal;
+import com.quant.Order;
+import com.quant.Strategy;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.trading.rules.OverIndicatorRule;
+import com.quant.trading.rules.UnderIndicatorRule;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

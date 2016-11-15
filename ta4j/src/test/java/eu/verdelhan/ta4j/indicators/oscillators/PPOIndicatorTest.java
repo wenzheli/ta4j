@@ -23,11 +23,14 @@
 package eu.verdelhan.ta4j.indicators.oscillators;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.oscillators.PPOIndicator;
+import com.quant.indicators.simple.ClosePriceIndicator;
 
 public class PPOIndicatorTest {
 

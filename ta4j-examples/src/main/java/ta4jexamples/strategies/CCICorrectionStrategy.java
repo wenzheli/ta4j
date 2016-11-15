@@ -22,15 +22,16 @@
  */
 package ta4jexamples.strategies;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Rule;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.indicators.oscillators.CCIIndicator;
-import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
+import com.quant.Decimal;
+import com.quant.Rule;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.indicators.oscillators.CCIIndicator;
+import com.quant.trading.rules.OverIndicatorRule;
+import com.quant.trading.rules.UnderIndicatorRule;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

@@ -6,58 +6,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2016 Marc de Verdelhan & respective authors (see AUTHORS)
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+import com.quant.Decimal;
+import com.quant.Rule;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TimeSeriesRepo;
+import com.quant.TradingRecord;
+import com.quant.Order.OrderType;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.factory.TimeSeriesRepoBuilder;
+import com.quant.indicators.helpers.HighestValueIndicator;
+import com.quant.indicators.helpers.LowestValueIndicator;
+import com.quant.indicators.oscillators.CCIIndicator;
+import com.quant.indicators.oscillators.StochasticOscillatorKIndicator;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.simple.MaxPriceIndicator;
+import com.quant.indicators.simple.MinPriceIndicator;
+import com.quant.indicators.simple.MultiplierIndicator;
+import com.quant.indicators.trackers.EMAIndicator;
+import com.quant.indicators.trackers.MACDIndicator;
+import com.quant.indicators.trackers.RSIIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.trading.rules.CrossedDownIndicatorRule;
+import com.quant.trading.rules.CrossedUpIndicatorRule;
+import com.quant.trading.rules.OverIndicatorRule;
+import com.quant.trading.rules.UnderIndicatorRule;
+import com.quant.trading.rules.WaitForRule;
+import com.quant.trading.rules.buying.SMAMultipleUp;
+import com.quant.trading.rules.buying.VOLMultipleUp;
+import com.quant.trading.rules.selling.SMAMultipleDown;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Order.OrderType;
-import eu.verdelhan.ta4j.Rule;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TimeSeriesRepo;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
-import eu.verdelhan.ta4j.indicators.helpers.HighestValueIndicator;
-import eu.verdelhan.ta4j.indicators.helpers.LowestValueIndicator;
-import eu.verdelhan.ta4j.indicators.oscillators.CCIIndicator;
-import eu.verdelhan.ta4j.indicators.oscillators.StochasticOscillatorKIndicator;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MaxPriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MultiplierIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.EMAIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.MACDIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.RSIIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
-import eu.verdelhan.ta4j.trading.rules.CrossedDownIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.CrossedUpIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.WaitForRule;
-import eu.verdelhan.ta4j.trading.rules.buying.SMAMultipleUp;
-import eu.verdelhan.ta4j.trading.rules.buying.VOLMultipleUp;
-import eu.verdelhan.ta4j.trading.rules.selling.SMAMultipleDown;
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

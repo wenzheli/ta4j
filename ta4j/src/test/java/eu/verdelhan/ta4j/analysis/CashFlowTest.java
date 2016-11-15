@@ -22,16 +22,19 @@
  */
 package eu.verdelhan.ta4j.analysis;
 
-import eu.verdelhan.ta4j.Order;
 import static eu.verdelhan.ta4j.TATestsUtils.*;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import java.util.Collections;
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import com.quant.Order;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.CashFlow;
 
 public class CashFlowTest {
 

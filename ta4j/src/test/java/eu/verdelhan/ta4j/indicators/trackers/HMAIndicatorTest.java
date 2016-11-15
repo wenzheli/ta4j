@@ -23,11 +23,14 @@
 package eu.verdelhan.ta4j.indicators.trackers;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.HMAIndicator;
 
 public class HMAIndicatorTest {
 

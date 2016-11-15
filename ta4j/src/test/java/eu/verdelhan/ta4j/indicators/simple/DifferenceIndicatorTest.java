@@ -22,10 +22,14 @@
  */
 package eu.verdelhan.ta4j.indicators.simple;
 
-import eu.verdelhan.ta4j.Decimal;
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.indicators.simple.ConstantIndicator;
+import com.quant.indicators.simple.DifferenceIndicator;
+import com.quant.indicators.simple.FixedIndicator;
 
 public class DifferenceIndicatorTest {
     

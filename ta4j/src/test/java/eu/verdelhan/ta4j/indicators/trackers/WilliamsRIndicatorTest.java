@@ -23,16 +23,19 @@
 package eu.verdelhan.ta4j.indicators.trackers;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MaxPriceIndicator;
-import eu.verdelhan.ta4j.indicators.simple.MinPriceIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.simple.MaxPriceIndicator;
+import com.quant.indicators.simple.MinPriceIndicator;
+import com.quant.indicators.trackers.WilliamsRIndicator;
 
 public class WilliamsRIndicatorTest {
     private TimeSeries data;

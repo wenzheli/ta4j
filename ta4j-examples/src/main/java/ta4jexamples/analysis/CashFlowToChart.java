@@ -22,24 +22,6 @@
  */
 package ta4jexamples.analysis;
 
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TimeSeriesRepo;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.TradingRecordMul;
-import eu.verdelhan.ta4j.TradingRule;
-import eu.verdelhan.ta4j.analysis.CashFlow;
-import eu.verdelhan.ta4j.factory.TimeSeriesRepoBuilder;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.trading.rules.buying.HotRankBuy;
-import eu.verdelhan.ta4j.trading.rules.buying.SMACrossedUp;
-import eu.verdelhan.ta4j.trading.rules.buying.SMAMultipleUp;
-import eu.verdelhan.ta4j.trading.rules.buying.VOLMultipleUp;
-import eu.verdelhan.ta4j.trading.rules.selling.HotRankSell;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -66,6 +48,28 @@ import org.jfree.ui.RefineryUtilities;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.Order;
+import com.quant.Strategy;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.TimeSeriesRepo;
+import com.quant.TradingRecord;
+import com.quant.TradingRecordMul;
+import com.quant.TradingRule;
+import com.quant.analysis.CashFlow;
+import com.quant.factory.TimeSeriesRepoBuilder;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.trading.rules.buying.CCICorrectionBuy;
+import com.quant.trading.rules.buying.GlobalExtremaBuy;
+import com.quant.trading.rules.buying.HotRankBuy;
+import com.quant.trading.rules.buying.RSI2Buy;
+import com.quant.trading.rules.buying.SMACrossedUp;
+import com.quant.trading.rules.buying.SMAMultipleUp;
+import com.quant.trading.rules.buying.VOLMultipleUp;
+import com.quant.trading.rules.selling.HotRankSell;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 import ta4jexamples.strategies.MovingMomentumStrategy;
 
@@ -73,7 +77,7 @@ import ta4jexamples.strategies.MovingMomentumStrategy;
  * This class builds a graphical chart showing the cash flow of a strategy.
  */
 public class CashFlowToChart {
-
+	
     /**
      * Builds a JFreeChart time series from a Ta4j time series and an indicator.
      * @param tickSeries the ta4j time series
@@ -304,10 +308,136 @@ private JFreeChart createChart(final XYDataset dataset) {
         displayChart(chart);
 		
     }
+    
+    
+    public static void runMultiple(TimeSeriesRepo repo, int option, int hotrankbuy, int hotranksell) throws Exception{
+
+		
+		List<TradingRule> buyingRules = new ArrayList<TradingRule>();
+		buyingRules.add(new HotRankBuy(hotrankbuy));
+			
+		TradingRule cciCorrectionBuy = new CCICorrectionBuy();
+		TradingRule globalExremaBuy = new GlobalExtremaBuy();
+		TradingRule rsi2Buy = new RSI2Buy();
+		TradingRule smaCrossedUp = new SMACrossedUp(5,10,30); 
+		TradingRule smaMultipleUp = new SMAMultipleUp(5,10,30);
+		TradingRule volMultipleUp = new VOLMultipleUp(5,10,20);
+		
+		if (option == 1){
+			buyingRules.add(volMultipleUp);
+		} else if (option == 2){
+			buyingRules.add(smaMultipleUp);
+		} else if (option  == 3){
+			buyingRules.add(volMultipleUp);
+			buyingRules.add(smaMultipleUp);
+		} else if (option == 4){
+			buyingRules.add(cciCorrectionBuy);
+			buyingRules.add(globalExremaBuy);
+			buyingRules.add(rsi2Buy);
+		} else if (option == 5){
+			buyingRules.add(cciCorrectionBuy);
+			buyingRules.add(globalExremaBuy);
+			buyingRules.add(rsi2Buy);
+			buyingRules.add(volMultipleUp);
+			buyingRules.add(smaMultipleUp);
+			buyingRules.add(smaCrossedUp);
+		} else{
+			
+		}
+		
+		//buyingRules.add(smaCrossedUp);
+		//buyingRules.add(smaMultipleUp);
+		buyingRules.add(volMultipleUp);
+		
+		
+		TradingRule selling = new HotRankSell(hotranksell);
+		
+		String start = "2016-09-09";
+		String end = "2016-10-14";
+
+		DateTimeFormatter f = DateTimeFormat.forPattern("yyyy-MM-dd");
+		
+		List<Order> orders = repo.run(buyingRules, selling, f.parseDateTime(start), f.parseDateTime(end));
+		
+		CashFlow cashFlow = new CashFlow(repo, orders, f.parseDateTime(start), f.parseDateTime(end));
+		
+		
+		System.out.println("option:" + option + "  hotrankbuy:   " + hotrankbuy + "  hotranksell: " + hotranksell);
+		
+		String code = "hs300"; 
+		TimeSeries hs300 = repo.get(code);
+		int startIdx = hs300.getIndexFromDate(f.parseDateTime(start));
+		int endIdx = hs300.getIndexFromDate(f.parseDateTime(end));
+		TimeSeries series = hs300.subseriesDeep(startIdx, endIdx);
+		
+		System.out.println("the strategy is: ");
+		for(int i = 0; i <  cashFlow.getValues().size(); i++){
+			System.out.println(cashFlow.getValue(i));
+		}
+			
+		
+		System.out.println("the hs300 is: ");
+		for(int i = 0; i <= 18; i++){
+			System.out.println(series.getTick(i).getClosePrice());
+		}
+		
+	}
+    
+    public static void run() throws Exception{
+    	String path = "/Users/wenzheli/Documents/workspace/quant-data/data/stocks";
+		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);
+		TimeSeriesRepo repo = builder.build();
+		
+		TradingRule buying = new HotRankBuy(5);
+		TradingRule selling = new HotRankSell(15);
+		
+		String start = "2016-09-09";
+		String end = "2016-10-14";
+
+		DateTimeFormatter f = DateTimeFormat.forPattern("yyyy-MM-dd");
+		
+		List<Order> orders = repo.run(buying, selling, f.parseDateTime(start), f.parseDateTime(end));
+		
+		CashFlow cashFlow = new CashFlow(repo, orders, f.parseDateTime(start), f.parseDateTime(end));
+		
+		String code = "hs300"; 
+		TimeSeries hs300 = repo.get(code);
+		int startIdx = hs300.getIndexFromDate(f.parseDateTime(start));
+		int endIdx = hs300.getIndexFromDate(f.parseDateTime(end));
+		TimeSeries series = hs300.subseriesDeep(startIdx, endIdx);
+		
+		System.out.println("the strategy is: ");
+		for(int i = 0; i <  cashFlow.getValues().size(); i++){
+			System.out.println(cashFlow.getValue(i));
+		}
+			
+		
+		System.out.println("the hs300 is: ");
+		for(int i = 0; i <= 18; i++){
+			System.out.println(series.getTick(i).getClosePrice());
+		}
+		
+		
+		
+    }
+    
+
 
     public static void main(String[] args) throws Exception {
+		String path = "/Users/wenzheli/Documents/workspace/quant-data/data/stocks";
+		TimeSeriesRepoBuilder builder = new TimeSeriesRepoBuilder(path);
+		TimeSeriesRepo repo = builder.build();
     	//drawHotRankSingle();
-    	drawHotRankMultiple();
+    	//drawHotRankMultiple();
+    	for (int option  = 0; option <= 1; option++){
+    		for (int hotrankbuy = 5; hotrankbuy <= 30; hotrankbuy = hotrankbuy + 5){
+    			for (int hotranksell = hotrankbuy; hotranksell <= 30; hotranksell = hotranksell + 5){
+    				runMultiple(repo, option, hotrankbuy, hotranksell);
+    			}
+    		}
+    		
+    	}
+    	
     	
         
         

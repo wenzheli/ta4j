@@ -23,13 +23,15 @@
 package eu.verdelhan.ta4j.indicators.helpers;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.indicators.helpers.AverageDirectionalMovementDownIndicator;
-import eu.verdelhan.ta4j.Tick;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+
+import com.quant.Tick;
+import com.quant.indicators.helpers.AverageDirectionalMovementDownIndicator;
 
 
 public class AverageDirectionalMovementDownIndicatorTest {

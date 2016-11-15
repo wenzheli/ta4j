@@ -23,13 +23,16 @@
 package eu.verdelhan.ta4j.indicators.volume;
 
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.Tick;
+
 import eu.verdelhan.ta4j.mocks.MockTick;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Test;
+
+import com.quant.Tick;
+import com.quant.indicators.volume.OnBalanceVolumeIndicator;
 
 public class OnBalanceVolumeIndicatorTest {
 

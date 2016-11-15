@@ -22,13 +22,16 @@
  */
 package eu.verdelhan.ta4j.indicators.trackers;
 
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.Decimal;
 import static eu.verdelhan.ta4j.TATestsUtils.assertDecimalEquals;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
+
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.WMAIndicator;
 
 public class WMAIndicatorTest {
 

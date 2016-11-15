@@ -22,14 +22,6 @@
  */
 package ta4jexamples.indicators;
 
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.bollinger.BollingerBandsLowerIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.bollinger.BollingerBandsMiddleIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.bollinger.BollingerBandsUpperIndicator;
 import java.text.SimpleDateFormat;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -40,6 +32,16 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
+
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsLowerIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsMiddleIndicator;
+import com.quant.indicators.trackers.bollinger.BollingerBandsUpperIndicator;
+
 import ta4jexamples.loaders.CsvTicksLoader;
 
 /**

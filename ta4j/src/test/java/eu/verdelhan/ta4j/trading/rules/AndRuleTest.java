@@ -22,12 +22,13 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.trading.rules.BooleanRule;
-import eu.verdelhan.ta4j.Rule;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Rule;
+import com.quant.trading.rules.BooleanRule;
 
 public class AndRuleTest {
 

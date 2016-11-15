@@ -22,13 +22,6 @@
  */
 package ta4jexamples.analysis;
 
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.Trade;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
@@ -47,6 +40,15 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
+
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.Strategy;
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.Trade;
+import com.quant.indicators.simple.ClosePriceIndicator;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 import ta4jexamples.strategies.MovingMomentumStrategy;
 

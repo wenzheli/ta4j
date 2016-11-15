@@ -22,14 +22,15 @@
  */
 package eu.verdelhan.ta4j.trading.rules;
 
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Indicator;
-import eu.verdelhan.ta4j.indicators.simple.FixedDecimalIndicator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Decimal;
+import com.quant.Indicator;
+import com.quant.indicators.simple.FixedDecimalIndicator;
+import com.quant.trading.rules.UnderIndicatorRule;
 
 public class UnderIndicatorRuleTest {
 

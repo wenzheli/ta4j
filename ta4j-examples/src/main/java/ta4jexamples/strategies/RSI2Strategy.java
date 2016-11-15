@@ -22,19 +22,20 @@
  */
 package ta4jexamples.strategies;
 
-import eu.verdelhan.ta4j.Decimal;
-import eu.verdelhan.ta4j.Rule;
-import eu.verdelhan.ta4j.Strategy;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
-import eu.verdelhan.ta4j.analysis.criteria.TotalProfitCriterion;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.RSIIndicator;
-import eu.verdelhan.ta4j.indicators.trackers.SMAIndicator;
-import eu.verdelhan.ta4j.trading.rules.CrossedDownIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.CrossedUpIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.OverIndicatorRule;
-import eu.verdelhan.ta4j.trading.rules.UnderIndicatorRule;
+import com.quant.Decimal;
+import com.quant.Rule;
+import com.quant.Strategy;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.indicators.simple.ClosePriceIndicator;
+import com.quant.indicators.trackers.RSIIndicator;
+import com.quant.indicators.trackers.SMAIndicator;
+import com.quant.trading.rules.CrossedDownIndicatorRule;
+import com.quant.trading.rules.CrossedUpIndicatorRule;
+import com.quant.trading.rules.OverIndicatorRule;
+import com.quant.trading.rules.UnderIndicatorRule;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

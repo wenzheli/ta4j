@@ -22,15 +22,22 @@
  */
 package eu.verdelhan.ta4j.analysis.criteria;
 
-import eu.verdelhan.ta4j.Strategy;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
-import eu.verdelhan.ta4j.trading.rules.BooleanRule;
-import eu.verdelhan.ta4j.trading.rules.FixedRule;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Strategy;
+import com.quant.analysis.criteria.AbstractAnalysisCriterion;
+import com.quant.analysis.criteria.AverageProfitCriterion;
+import com.quant.analysis.criteria.BuyAndHoldCriterion;
+import com.quant.analysis.criteria.RewardRiskRatioCriterion;
+import com.quant.analysis.criteria.TotalProfitCriterion;
+import com.quant.trading.rules.BooleanRule;
+import com.quant.trading.rules.FixedRule;
 
 public class AbstractAnalysisCriterionTest {
 

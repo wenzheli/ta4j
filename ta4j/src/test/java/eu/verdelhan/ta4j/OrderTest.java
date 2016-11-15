@@ -22,10 +22,12 @@
  */
 package eu.verdelhan.ta4j;
 
-import eu.verdelhan.ta4j.Order.OrderType;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.Order;
+import com.quant.Order.OrderType;
 
 public class OrderTest {
 

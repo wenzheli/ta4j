@@ -22,14 +22,16 @@
  */
 package eu.verdelhan.ta4j.analysis.criteria;
 
-import eu.verdelhan.ta4j.AnalysisCriterion;
-import eu.verdelhan.ta4j.Order;
 import eu.verdelhan.ta4j.TATestsUtils;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.TradingRecord;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import com.quant.AnalysisCriterion;
+import com.quant.Order;
+import com.quant.TimeSeries;
+import com.quant.TradingRecord;
+import com.quant.analysis.criteria.MaximumDrawdownCriterion;
 
 public class MaximumDrawdownCriterionTest {
 

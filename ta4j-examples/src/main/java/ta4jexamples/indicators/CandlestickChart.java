@@ -22,9 +22,6 @@
  */
 package ta4jexamples.indicators;
 
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
-import eu.verdelhan.ta4j.indicators.simple.ClosePriceIndicator;
 import java.awt.Color;
 import java.util.Date;
 import org.jfree.chart.ChartFactory;
@@ -42,6 +39,11 @@ import org.jfree.data.xy.OHLCDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.joda.time.Period;
+
+import com.quant.Tick;
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.ClosePriceIndicator;
+
 import ta4jexamples.loaders.CsvTradesLoader;
 
 /**

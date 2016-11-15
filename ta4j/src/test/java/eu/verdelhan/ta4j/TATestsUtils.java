@@ -24,6 +24,8 @@ package eu.verdelhan.ta4j;
 
 import static org.junit.Assert.assertEquals;
 
+import com.quant.Decimal;
+
 /**
  * Utility class for {@code Decimal} tests.
  */

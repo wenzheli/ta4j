@@ -22,11 +22,13 @@
  */
 package eu.verdelhan.ta4j.indicators.simple;
 
-import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.mocks.MockTimeSeries;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.quant.TimeSeries;
+import com.quant.indicators.simple.MaxPriceIndicator;
 
 public class MaxPriceIndicatorTest {
     private MaxPriceIndicator maxPriceIndicator;

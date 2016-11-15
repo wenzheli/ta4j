@@ -23,8 +23,7 @@
 package ta4jexamples.loaders;
 
 import au.com.bytecode.opencsv.CSVReader;
-import eu.verdelhan.ta4j.Tick;
-import eu.verdelhan.ta4j.TimeSeries;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,6 +35,9 @@ import java.util.logging.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.Instant;
 import org.joda.time.Period;
+
+import com.quant.Tick;
+import com.quant.TimeSeries;
 
 /**
  * This class build a Ta4j time series from a CSV file containing trades.
